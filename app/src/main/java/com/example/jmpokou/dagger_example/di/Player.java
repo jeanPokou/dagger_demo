@@ -1,10 +1,18 @@
 package com.example.jmpokou.dagger_example.di;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
-import dagger.android.*;
 
 public class Player {
+
+    private final  Weapon mainWeapon;
+    public Weapon getMainWeapon() {
+        return this.mainWeapon;
+    }
     @Inject
-    Weapon weapon;
+    Player( Weapon weapon) {
+      this.mainWeapon = weapon ;
+    }
+
 }

@@ -8,18 +8,17 @@ import static org.junit.Assert.*;
 
 public class PlayerTest_di {
 
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
+    @Test
+    public void shouldAssignWeaponToPlayer() {
+       Player player =  DaggerPlayerComponent.builder().build().player();
+       assertEquals("gun", player.getMainWeapon().name);
     }
 
     @Test
-    public void shouldAssignWeaponToPlayer() {
-        Player player = new Player();
-        DaggerPlayerComponent.create().inject(player);
-        assertEquals("sword", player.weapon.name);
+    public void weaponShouldBeUnique() {
+        PlayerComponent playerComponent = DaggerPlayerComponent.builder().build();
+        Player player_1 = playerComponent.player();
+        Player player_2 = playerComponent.player();
+        assertEquals(player_1.getMainWeapon(), player_2.getMainWeapon());
     }
 }
